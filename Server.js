@@ -32,14 +32,14 @@ io.on('connection',function(socket){
 	socket.on('message', function(data){
 		// console.log(socket.id + '  ' + msg);
 		socket.broadcast.emit('message', {			//Broadcast to all online users
-			message: data.message,					//except the one who fire the event
+			message: data.message,				//except the one who fire the event
 			source_id: data.id,
 		});
 	});
 
 	//Recieve user's ID
 	socket.on('data',function(data){
-		socket.name = data.id;						//Pass user's ID to object socket's name parameter
+		socket.name = data.id;				//Pass user's ID to object socket's name parameter
 		console.log(socket.name + ' is connected.')
 		socket.broadcast.emit('people_in', {
 			socket_id: socket.name,
